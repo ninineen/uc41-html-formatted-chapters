@@ -1,0 +1,23 @@
+:root {
+  --workskin-max-width: 72em;
+}
+
+#main {
+  padding-block: 1em;
+  padding-inline: 3em;
+}
+
+#workskin {
+  font-size: 1.08em;
+  margin-inline: auto;
+  padding-inline: 0.25em;
+  max-width: var(--workskin-max-width);
+  position: relative;
+}
+
+.workskin-placeholder {
+  color: var(--color-toolbar-muted);
+  font-style: italic;
+}
+
+.load-error { color: #c00; }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AO3 Comment Preview</title>
+  <link rel="stylesheet" href="vendor/ao3-screen.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/toolbar.css">
+  <link rel="stylesheet" href="css/comment-preview.css">
+</head>
+<body>
+
+<div id="toolbar" class="toolbar">
+  <a href="preview.html">&larr; chapter preview</a>
+  <span class="sep">|</span>
+  <span>comment preview</span>
+  <span id="sanitized-badge">sanitized</span>
+  <button id="dark-toggle" class="toolbar-btn toolbar-spacer">&#9790; Dark</button>
+</div>
+
+<div id="panes">
+
+  <div id="input-pane">
+    <div id="input-label">
+      <span>HTML input</span>
+      <button id="clear-btn" class="pane-clear-btn">Clear</button>
+    </div>
+    <textarea
+      id="html-input"
+      spellcheck="false"
+      placeholder="Type your comment HTML here...
+
+Allowed: a, b, em, strong, i, u, s, blockquote, h1-h6, ul, ol, li, p, br, hr, img, table, span, div, code, pre, sup, sub, details, summary, ruby, and more.
+
+Disallowed tags and inline style= are stripped automatically."
+    ></textarea>
+    <div id="warning-bar"></div>
+  </div>
+
+  <div id="preview-pane">
+    <div id="preview-label">AO3 preview</div>
+    <div id="preview-scroll">
+      <div id="fake-comment" class="comment">
+        <h4 class="byline">
+          ninineen
+          <span class="role">(Author)</span>
+        </h4>
+        <div id="comment-content" class="userstuff"></div>
+        <div class="actions">
+          <a href="#">Reply</a>
+          <a href="#">Edit</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<script type="module" src="js/comment-preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+const DARK_MODE_KEY = "ao3preview-dark";
+const CHAPTERS = [
+    { label: "ch7 (formatted)", path: "chapters/ch7.formatted.html" },
+];
+// ── DOM refs ───────────────────────────────────────────
+const chapterSelect = document.getElementById("chapter-select");
+const filePicker = document.getElementById("file-picker");
+const workskin = document.getElementById("workskin");
+const darkToggle = document.getElementById("dark-toggle");
+// ── chapter select ─────────────────────────────────────
+for (const { label, path } of CHAPTERS) {
+    const opt = document.createElement("option");
+    opt.value = path;
+    opt.textContent = label;
+    chapterSelect.appendChild(opt);
+}
+function renderChapter(html) {
+    workskin.innerHTML = `<div class="userstuff">${html}</div>`;
+}
+async function loadChapter(path) {
+    try {
+        const res = await fetch(path);
+        if (!res.ok)
+            throw new Error(res.statusText);
+        renderChapter(await res.text());
+    }
+    catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        workskin.innerHTML = `<p class="load-error">Could not load <code>${path}</code>: ${message}</p>`;
+    }
+}
+chapterSelect.addEventListener("change", () => {
+    if (chapterSelect.value)
+        loadChapter(chapterSelect.value);
+});
+// ── file picker ────────────────────────────────────────
+filePicker.addEventListener("change", () => {
+    const file = filePicker.files?.[0];
+    if (!file)
+        return;
+    const reader = new FileReader();
+    reader.onload = (e) => renderChapter(e.target?.result);
+    reader.readAsText(file);
+});
+// ── dark mode ──────────────────────────────────────────
+function applyDarkMode(isDark) {
+    document.documentElement.classList.toggle("dark", isDark);
+    darkToggle.textContent = isDark ? "☀ Light" : "☾ Dark";
+}
+let isDark = localStorage.getItem(DARK_MODE_KEY) === "true";
+applyDarkMode(isDark);
+darkToggle.addEventListener("click", () => {
+    isDark = !isDark;
+    localStorage.setItem(DARK_MODE_KEY, String(isDark));
+    applyDarkMode(isDark);
+});
+export {};
