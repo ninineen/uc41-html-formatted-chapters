@@ -1,0 +1,372 @@
+/* =========================================
+   DISCO ELYSIUM: ADAPTIVE THEME WORK SKIN
+   ========================================= */
+
+
+/* --- Base Layout & Hanging Indent --- */
+#workskin .de-convo {
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+    /* Removed max-width and centering */
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+
+/* --- Speakers & Base Text --- */
+#workskin .de-speaker,
+#workskin .de-skill {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#workskin .de-speaker {
+    color: #6B7280;
+    /* Neutral mid-gray for light/dark mode */
+}
+
+/* YOU (player character) — distinct warm off-white, stands apart from NPC gray */
+#workskin .de-speaker.you {
+    color: #D4C5A9;
+}
+
+/* Generic labeled object/thing (e.g. a note, sign, item) */
+#workskin .de-speaker.thing {
+    color: #8BAF9A;
+}
+
+/* --- INTELLECT SKILLS --- */
+#workskin .de-skill.logic {
+    color: #2A7B9B;
+}
+
+#workskin .de-skill.encyclopedia {
+    color: #3B888C;
+}
+
+#workskin .de-skill.rhetoric {
+    color: #1E88E5;
+}
+
+#workskin .de-skill.drama {
+    color: #5C6BC0;
+}
+
+#workskin .de-skill.conceptualization {
+    color: #0097A7;
+}
+
+#workskin .de-skill.visual-calculus {
+    color: #4682B4;
+}
+
+/* --- PSYCHE SKILLS --- */
+#workskin .de-skill.volition {
+    color: #8E24AA;
+}
+
+#workskin .de-skill.inland-empire {
+    color: #7B1FA2;
+}
+
+#workskin .de-skill.empathy {
+    color: #9C27B0;
+}
+
+#workskin .de-skill.authority {
+    color: #6A1B9A;
+}
+
+#workskin .de-skill.esprit-de-corps {
+    color: #5E35B1;
+}
+
+#workskin .de-skill.suggestion {
+    color: #AB47BC;
+}
+
+/* --- PHYSIQUE SKILLS --- */
+#workskin .de-skill.endurance {
+    color: #C62828;
+}
+
+#workskin .de-skill.pain-threshold {
+    color: #D84315;
+}
+
+#workskin .de-skill.physical-instrument {
+    color: #A1522E;
+}
+
+#workskin .de-skill.electrochemistry {
+    color: #C2185B;
+}
+
+#workskin .de-skill.shivers {
+    color: #9E334D;
+}
+
+#workskin .de-skill.half-light {
+    color: #D32F2F;
+}
+
+/* --- MOTORICS SKILLS --- */
+#workskin .de-skill.hand-eye-coordination {
+    color: #E67E22;
+}
+
+#workskin .de-skill.perception {
+    color: #D39F10;
+}
+
+#workskin .de-skill.reaction-speed {
+    color: #D35400;
+}
+
+#workskin .de-skill.savoir-faire {
+    color: #B8860B;
+}
+
+#workskin .de-skill.interfacing {
+    color: #A67C00;
+}
+
+#workskin .de-skill.composure {
+    color: #C08A18;
+}
+
+/* --- PRIMAL VOICES --- */
+#workskin .de-skill.ancient-reptilian-brain {
+    color: #3A6B58;
+}
+
+#workskin .de-skill.limbic-system {
+    color: #B33951;
+}
+
+/* --- Check Results --- */
+#workskin .de-check {
+    font-style: italic;
+    font-weight: normal;
+}
+
+#workskin .de-check.success {
+    color: #109352;
+}
+
+/* Slightly brightened green for dark mode */
+#workskin .de-check.failure {
+    color: #D32F2F;
+}
+
+/* --- Player Choices --- */
+#workskin ol.de-choices {
+    list-style-type: decimal;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding-left: 2em;
+}
+
+#workskin ol.de-choices li {
+    color: #C04000;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    padding: 0.2em 0.5em;
+    border-radius: 3px;
+}
+
+#workskin ol.de-choices li::marker {
+    color: #6B7280;
+}
+
+/* Hover State (For desktop readers) & Selected State */
+#workskin ol.de-choices li:hover,
+#workskin ol.de-choices li.selected {
+    background-color: #C04000;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+/* Old / Previously Clicked Choice */
+#workskin ol.de-choices li.old {
+    color: #C47A52;
+    opacity: 0.8;
+}
+
+/* White Check — skill check, parchment card */
+#workskin ol.de-choices li.white-check {
+    background-color: #C8BEA8;
+    color: #1C1A14;
+    border-left: 3px solid #4A4540;
+}
+
+#workskin ol.de-choices li.white-check::marker {
+    color: #4A4540;
+}
+
+#workskin ol.de-choices li.white-check:hover,
+#workskin ol.de-choices li.white-check.selected {
+    background-color: #AEA490;
+    color: #1C1A14;
+}
+
+/* Locked White Check — unavailable skill check */
+#workskin ol.de-choices li.white-check.locked {
+    background-color: #9A9590;
+    color: #2E2C28;
+    border-left-color: #5A5854;
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+#workskin ol.de-choices li.white-check.locked::marker {
+    color: #5A5854;
+}
+
+/* Red Check — dangerous / failure check */
+#workskin ol.de-choices li.red-check {
+    background-color: #A83000;
+    color: #FFFFFF;
+    border-left: 3px solid #F0CDB8;
+}
+
+#workskin ol.de-choices li.red-check::marker {
+    color: #F0CDB8;
+}
+
+#workskin ol.de-choices li.red-check:hover,
+#workskin ol.de-choices li.red-check.selected {
+    background-color: #8A2800;
+    color: #FFFFFF;
+}
+
+/* Light mode: parchment needs a tad more contrast on white AO3 backgrounds */
+@media (prefers-color-scheme: light) {
+    #workskin ol.de-choices li.white-check {
+        background-color: #E4DDD0;
+        border-left-color: #3A3530;
+    }
+    #workskin ol.de-choices li.white-check::marker { color: #3A3530; }
+    #workskin ol.de-choices li.white-check:hover,
+    #workskin ol.de-choices li.white-check.selected { background-color: #CCC5B8; }
+
+    #workskin ol.de-choices li.white-check.locked { background-color: #C8C4BC; }
+
+    #workskin ol.de-choices li.red-check { background-color: #B83800; }
+    #workskin ol.de-choices li.red-check:hover,
+    #workskin ol.de-choices li.red-check.selected { background-color: #963000; }
+}
+
+  /* --- UI Alerts (Thoughts, Health, Morale) --- */
+#workskin p.de-alert {
+    font-family: "Trebuchet MS", "Arial", sans-serif; /* DE uses a sans-serif for UI pop-ups */
+    text-transform: uppercase;
+    text-align: center;
+    margin: 2em 0;
+    line-height: 1.3;
+  }
+  
+  /* We style the spans so the background "shrink-wraps" tight to the text */
+  #workskin p.de-alert > span {
+    display: inline;
+    color: #FFFFFF;
+    padding: 0.1em 1.5em;
+  }
+  
+  #workskin p.de-alert > span:first-of-type {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  
+  /* This creates the line break between the two spans */
+  #workskin p.de-alert > span:first-of-type:after {
+    content: "\a";
+    white-space: pre;
+  }
+  
+  /* Banner Colors */
+  #workskin p.de-alert.thought > span     { background: #374151; } /* Dark Charcoal */
+  #workskin p.de-alert.health-up > span   { background: #D84315; } /* Healing Orange/Red */
+  #workskin p.de-alert.morale-up > span   { background: #1E88E5; } /* Healing Blue */
+  #workskin p.de-alert.health-down > span { background: #991B1B; } /* Damage Dark Red */
+  #workskin p.de-alert.morale-down > span { background: #7B1FA2; } /* Damage Purple */
+  #workskin p.de-alert.success > span     { background: #109352; } /* Success Green */
+  #workskin p.de-alert.failure > span     { background: #D32F2F; } /* Failure Red */
+  #workskin p.de-alert.item > span        { background: #111111; } /* Item Black */
+  #workskin p.de-alert.money > span      { background: #B8891A; } /* Money Gold */
+  #workskin p.de-alert.task-gained > span { background: #131920; } /* Task Dark */
+
+/* Auto-injected icon block — dice for checks, emoji for item/money/task */
+#workskin p.de-alert.check-success::before,
+#workskin p.de-alert.check-failed::before,
+#workskin p.de-alert.item::before,
+#workskin p.de-alert.money::before,
+#workskin p.de-alert.task-gained::before {
+    display: block;
+    font-size: 2em;
+    color: #FFFFFF;
+    padding: 0.3em 1.5em;
+    width: fit-content;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#workskin p.de-alert.check-success::before {
+    content: "⚂ ⚅";
+    background: #109352;
+}
+
+#workskin p.de-alert.check-failed::before {
+    content: "⚀ ⚁";
+    background: #D32F2F;
+}
+
+/* check-success / check-failed span colors (auto-dice variants) */
+#workskin p.de-alert.check-success > span { background: #109352; }
+#workskin p.de-alert.check-failed > span  { background: #D32F2F; }
+
+#workskin p.de-alert.item::before {
+    content: "💼";
+    background: #111111;
+}
+
+#workskin p.de-alert.money::before {
+    content: "✤";
+    background: #B8891A;
+}
+
+#workskin p.de-alert.task-gained::before {
+    content: "📄";
+    background: #131920;
+}
+
+/* --- Task Complete --- */
+#workskin p.de-task-complete {
+    font-family: "Trebuchet MS", "Arial", sans-serif;
+    font-weight: bold;
+    color: #4CAF7D;
+    margin: 1.5em 0;
+}
+
+/* --- Continue Button --- */
+#workskin p.de-continue {
+    margin: 2em 0 0;
+    text-align: right;
+}
+
+#workskin p.de-continue > span {
+    display: block;
+    background-color: #7B1A10;
+    color: #FFFFFF;
+    font-family: "Trebuchet MS", "Arial", sans-serif;
+    font-size: 1.05em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5em 2em;
+    border: 2px solid #A0261A;
+    width: 80%;
+    margin-left: auto;
+    margin-right: 0;
+    box-sizing: border-box;
+    text-align: start;
+}
