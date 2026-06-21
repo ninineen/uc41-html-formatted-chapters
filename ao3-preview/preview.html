@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AO3 Chapter Preview</title>
+
+  <!-- AO3 base styles -->
+  <link rel="stylesheet" href="1_site_screen_.css">
+
+  <!-- Workskin -->
+  <link rel="stylesheet" href="../ao3-adaptive-disco-elysium-workskin/skin/deworkskin.css">
+
+  <style>
+    /* Minimal AO3 page chrome so #workskin gets its context */
+    body {
+      background: #fff;
+      color: #2a2a2a;
+      font: 100%/1.125 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #main {
+      padding: 1em 3em;
+    }
+
+    /* Chapter area mirrors AO3's .userstuff wrapper */
+    #workskin {
+      font-size: 1.08em;
+      margin: auto;
+      padding: 0 0.25em;
+      max-width: 72em;
+      position: relative;
+    }
+
+    /* Dev toolbar */
+    #preview-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #1a1a1a;
+      color: #eee;
+      padding: 0.5em 1em;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      font: 0.8em/1 monospace;
+    }
+
+    #preview-toolbar label { color: #aaa; }
+
+    #preview-toolbar select,
+    #preview-toolbar input[type="file"] {
+      font: inherit;
+      background: #333;
+      color: #eee;
+      border: 1px solid #555;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+
+    #preview-toolbar button {
+      font: inherit;
+      background: #990000;
+      color: #fff;
+      border: none;
+      padding: 0.25em 0.75em;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #preview-toolbar button:hover { background: #cc0000; }
+
+    #dark-toggle {
+      margin-left: auto;
+    }
+
+    /* Dark mode (simulate AO3Reversi or night mode) */
+    body.dark {
+      background: #1a1a1a;
+      color: #d4d4d4;
+    }
+
+    body.dark #preview-toolbar {
+      background: #111;
+    }
+
+    body.dark #workskin {
+      color: #d4d4d4;
+    }
+  </style>
+</head>
+<body>
+
+<div id="preview-toolbar">
+  <label for="chapter-select">Chapter:</label>
+  <select id="chapter-select">
+    <option value="">— pick a file —</option>
+  </select>
+
+  <label for="file-picker">or load file:</label>
+  <input type="file" id="file-picker" accept=".html">
+
+  <button id="dark-toggle">☀ Light</button>
+</div>
+
+<div id="main">
+  <div id="workskin">
+    <p style="color:#888; font-style:italic;">Select a formatted chapter above to preview it here.</p>
+  </div>
+</div>
+
+<script>
+  // ---------------------------------------------------------------------------
+  // Known chapters — add entries here as you create them.
+  // Paths are relative to this preview.html file.
+  // ---------------------------------------------------------------------------
+  const CHAPTERS = [
+    { label: "ch7 (formatted)", path: "../chapters/ch7.formatted.html" },
+  ];
+
+  // ---------------------------------------------------------------------------
+  // Populate select
+  // ---------------------------------------------------------------------------
+  const select = document.getElementById("chapter-select");
+  CHAPTERS.forEach(({ label, path }) => {
+    const opt = document.createElement("option");
+    opt.value = path;
+    opt.textContent = label;
+    select.appendChild(opt);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Load chapter via fetch (works with any local server extension)
+  // ---------------------------------------------------------------------------
+  const workskin = document.getElementById("workskin");
+
+  async function loadPath(path) {
+    try {
+      const res = await fetch(path);
+      if (!res.ok) throw new Error(res.statusText);
+      workskin.innerHTML = await res.text();
+    } catch (e) {
+      workskin.innerHTML = `<p style="color:red">Could not load <code>${path}</code>: ${e.message}</p>`;
+    }
+  }
+
+  select.addEventListener("change", () => {
+    if (select.value) loadPath(select.value);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Load from local file picker (no server needed for this path)
+  // ---------------------------------------------------------------------------
+  const picker = document.getElementById("file-picker");
+  picker.addEventListener("change", () => {
+    const file = picker.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => { workskin.innerHTML = e.target.result; };
+    reader.readAsText(file);
+  });
+
+  // ---------------------------------------------------------------------------
+  // Dark mode toggle
+  // ---------------------------------------------------------------------------
+  const toggle = document.getElementById("dark-toggle");
+  let dark = false;
+  toggle.addEventListener("click", () => {
+    dark = !dark;
+    document.body.classList.toggle("dark", dark);
+    toggle.textContent = dark ? "☀ Light" : "☾ Dark";
+  });
+</script>
+
+</body>
+</html>
