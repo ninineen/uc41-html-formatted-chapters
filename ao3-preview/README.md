@@ -64,7 +64,7 @@ This gives the text the skill's colour only. Works with any skill class. Any inl
 From the project root:
 
 ```bash
-npx ts-node format.ts chapters/chN.html
+npx ts-node scripts/format.ts chapters/chN.html
 ```
 
 Outputs `chapters/chN.formatted.html`. Add it to the `CHAPTERS` array in `ts/preview.ts` and run `npm run build` to make it appear in the dropdown.
