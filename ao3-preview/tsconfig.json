@@ -4,7 +4,7 @@
     "lib": ["ES2022", "DOM"],
     "module": "ES2022",
     "moduleResolution": "bundler",
-    "rootDir": "ts",
+    "rootDir": "src/ts",
     "outDir": "../build/js",
     "strict": true,
     "noUncheckedIndexedAccess": true,
@@ -13,5 +13,5 @@
     "removeComments": false,
     "moduleDetection": "force"
   },
-  "include": ["ts/**/*.ts"]
+  "include": ["src/ts/**/*.ts"]
 }

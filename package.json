@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "ts-node format.ts",
-    "build": "rm -rf build && mkdir -p build/css && cp ao3-preview/*.html ao3-preview/*.css build/ && cp ao3-preview/css/*.css build/css/ && tsc --project ao3-preview/tsconfig.json",
+    "build": "rm -rf build && mkdir -p build/css build/js build/vendor && cp ao3-preview/src/html/*.html build/ && cp ao3-preview/src/css/*.css build/css/ && cp ao3-preview/src/vendor/*.css build/vendor/ && tsc --project ao3-preview/tsconfig.json",
     "start": "npm run build && live-server . --open=/build/preview.html --watch=ao3-preview,chapters",
     "test": "jest"
   },
