@@ -38,6 +38,15 @@ const quill = new Quill("#quill-editor", {
         ],
     },
 });
+// When Quill pastes a plain text node that looks like raw HTML,
+// convert it to rendered HTML instead of inserting it as literal text.
+quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta) => {
+    const text = node.data;
+    if (/<[a-z][\s\S]*>/i.test(text)) {
+        return quill.clipboard.convert({ html: text });
+    }
+    return delta;
+});
 function sanitizeAndCollectStripped(raw) {
     const removedTags = new Set();
     const removedAttrs = new Set();
@@ -79,7 +88,10 @@ function applyWarnings(removedTags, removedAttrs) {
 let updating = false;
 function getEditorHtml() {
     const inner = quill.root.innerHTML;
-    return inner === "<p><br></p>" ? "" : inner;
+    if (inner === "<p><br></p>")
+        return "";
+    // Quill appends a trailing <br> inside every block element — strip them.
+    return inner.replace(/<br\s*\/?>\s*(<\/(?:p|li|h[1-6]|blockquote|td|th)>)/gi, "$1");
 }
 function updateFromEditor() {
     if (updating)
