@@ -45,6 +45,23 @@ const quill = new Quill("#quill-editor", {
   },
 });
 
+// If the user pastes raw HTML text (e.g. "<b>hello</b>"), detect it and
+// insert it as rendered HTML rather than a literal string.
+quill.root.addEventListener("paste", (e: ClipboardEvent) => {
+  const text = e.clipboardData?.getData("text/plain") ?? "";
+  const hasHtmlMime = e.clipboardData?.types.includes("text/html") ?? false;
+  const looksLikeHtml = /<[a-z][\s\S]*>/i.test(text);
+
+  if (!hasHtmlMime && looksLikeHtml) {
+    e.preventDefault();
+    e.stopPropagation();
+    const range = quill.getSelection(true);
+    const delta = quill.clipboard.convert({ html: text });
+    quill.updateContents(delta, "user");
+    quill.setSelection(range.index + delta.ops.length, 0, "silent");
+  }
+});
+
 // ── sanitizer ──────────────────────────────────────────
 
 interface SanitizeResult {

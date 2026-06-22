@@ -21,7 +21,9 @@ declare class Quill {
   root: HTMLElement;
   clipboard: QuillClipboard;
   on(event: "text-change", handler: (delta: Delta, oldDelta: Delta, source: string) => void): void;
+  getSelection(focus?: boolean): { index: number; length: number };
   setText(text: string, source?: string): void;
   setContents(delta: Delta, source?: string): void;
+  updateContents(delta: Delta, source?: string): void;
   focus(): void;
 }
