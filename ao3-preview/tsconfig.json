@@ -13,5 +13,6 @@
     "removeComments": false,
     "moduleDetection": "force"
   },
-  "include": ["src/ts/**/*.ts"]
+  "include": ["src/ts/**/*.ts"],
+  "exclude": ["src/ts/**/*.test.ts"]
 }
