@@ -22,6 +22,52 @@ I make AO3 skins, stream on Twitch, and post fandom content across socials. Find
 
 ---
 
+## Usage
+
+> **Run all commands from WSL**, not Windows. `live-server` and `ts-node` are installed in the WSL environment — open a terminal in Ubuntu and `cd` to the project root before running anything.
+
+### Format a chapter
+
+Transforms a raw HTML chapter file and writes a `.formatted.html` alongside it, wrapping skill-check lines in the correct `de-convo` / `de-skill` / `de-check` spans.
+
+```bash
+npm run format -- chapters/ch2.html
+# → writes chapters/ch2.formatted.html
+```
+
+### Preview locally
+
+Builds everything into `build/` and opens a live-reloading local server. The preview renders inside the real AO3 stylesheet + the Disco Elysium workskin.
+
+```bash
+npm start
+# → http://127.0.0.1:8080/build/preview.html
+```
+
+Use the **chapter dropdown** to load a formatted chapter, or **Load file** to pick any `.html` from disk. The **☾/☀ toggle** switches between dark and light backgrounds.
+
+To add a newly formatted chapter to the dropdown, edit the `CHAPTERS` array in `ao3-preview/src/ts/preview.ts`, then rebuild.
+
+To rebuild without starting the server:
+
+```bash
+npm run build
+```
+
+### Run tests
+
+```bash
+npm test
+```
+
+### Deploy to GitHub Pages
+
+```bash
+npm run deploy
+```
+
+---
+
 ## Read it on AO3
 
 **[Read *Unprofessional Conduct in the 41st* on AO3 →](https://archiveofourown.org/works/84782906/chapters/229473821)**
