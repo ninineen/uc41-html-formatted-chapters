@@ -36,7 +36,12 @@
   padding-block: 0.2em;
   padding-inline: 0.4em;
   border-radius: 3px;
-  color-scheme: dark;
+  color-scheme: dark; /* toolbar is always dark-bg; keeps option text readable */
+}
+
+.toolbar-select option {
+  background: var(--color-toolbar-control-bg);
+  color: var(--color-toolbar-text);
 }
 
 .toolbar-btn {

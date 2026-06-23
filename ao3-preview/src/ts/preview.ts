@@ -5,10 +5,6 @@ interface Chapter {
   path: string;
 }
 
-const CHAPTERS: Chapter[] = [
-  { label: "ch7 (formatted)", path: "chapters/ch7.formatted.html" },
-];
-
 // ── DOM refs ───────────────────────────────────────────
 
 const chapterSelect = document.getElementById("chapter-select") as HTMLSelectElement;
@@ -18,12 +14,23 @@ const darkToggle    = document.getElementById("dark-toggle")    as HTMLButtonEle
 
 // ── chapter select ─────────────────────────────────────
 
-for (const { label, path } of CHAPTERS) {
-  const opt = document.createElement("option");
-  opt.value = path;
-  opt.textContent = label;
-  chapterSelect.appendChild(opt);
+async function loadChapterIndex(): Promise<void> {
+  try {
+    const res = await fetch("chapters/index.json");
+    if (!res.ok) throw new Error(res.statusText);
+    const chapters: Chapter[] = await res.json();
+    for (const { label, path } of chapters) {
+      const opt = document.createElement("option");
+      opt.value = path;
+      opt.textContent = label;
+      chapterSelect.appendChild(opt);
+    }
+  } catch {
+    // index.json missing or malformed — dropdown stays empty, file picker still works
+  }
 }
+
+loadChapterIndex();
 
 function renderChapter(html: string): void {
   workskin.innerHTML = `<div class="userstuff">${html}</div>`;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "format": "ts-node scripts/format.ts",
-    "build": "rm -rf build && mkdir -p build/css build/js build/vendor build/chapters && cp index.html build/ && cp ao3-preview/src/html/*.html build/ && cp ao3-preview/src/css/*.css build/css/ && cp ao3-preview/src/vendor/*.css build/vendor/ && cp chapters/*.html build/chapters/ && tsc --project ao3-preview/tsconfig.json",
+    "build": "rm -rf build && mkdir -p build/css build/js build/vendor build/chapters && cp index.html build/ && cp ao3-preview/src/html/*.html build/ && cp ao3-preview/src/css/*.css build/css/ && cp ao3-preview/src/vendor/*.css build/vendor/ && cp chapters/*.html build/chapters/ && tsc --project ao3-preview/tsconfig.json && ts-node scripts/build-chapter-index.ts",
     "deploy": "npm run build && gh-pages -d build",
     "start": "npm run build && live-server build",
     "test": "jest",
